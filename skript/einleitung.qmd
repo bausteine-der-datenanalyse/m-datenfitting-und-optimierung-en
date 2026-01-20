@@ -1,0 +1,316 @@
+# Introduction
+Experimentally obtained data can be heavily affected by noise, or the relationship between the variables may be best described by a non-linear dependence. Data fitting is the process of adapting a model to a dataset in order to describe the underlying relationship between the variables, smooth the data, or estimate values between the existing data points. The goal of this process is to find a function that describes the dataset as well as possible by minimizing the deviation between the model and the actual data. This process is also referred to as modeling.
+
+In this module, the following packages are used:
+```{python}
+import numpy as np
+import numpy.polynomial.polynomial as poly
+import matplotlib.pyplot as plt
+```
+
+The modeling of data can be generalized to the following problem:
+
+1. Given are $n$ pairs of measurement points $(x_i, y_i)$ with $x_i, y_i \in \mathbb{R}$.
+2. The goal is to find a model function $y(x)$ that approximates the measurement point pairs.
+
+One possible approach is to represent the model function as a sum of $m$ basis functions $\phi_i(x)$ with coefficients $\beta_i$.
+$$
+y(x) = \sum_{i=1}^{m}\beta_i \cdot \phi_i(x) = \beta_1\cdot \phi_1(x) + \cdots + \beta_m\cdot \phi_m(x)
+$$
+
+The coefficients $\beta_i$ must be determined in such a way that $y(x)$ approximates the measurement points as well as possible – or even exactly.
+
+As a distance measure between a model function and the measurement points, the method of least squares can be used.
+
+::: {#nte-ols .callout-note collapse="true"}
+## Method of Least Squares
+
+Using the method of least squares, the line $\hat{y} = \beta_0 + \beta_1 \cdot x$ is determined such that the squared distances of the predicted values $\hat{y}$ from the actually measured values $y$ are minimized. The values $y_i - \hat{y_i}$ are the residuals $e_i$. Thus, the following holds:
+
+$$
+\sum_{i=1}^{N}(y_i - \hat{y_i})^2 = \sum_{i=1}^{N} e_i = \min
+$$
+
+Graphically, the minimization of the squared distances can be illustrated as follows.
+
+:::: {.panel-tabset}
+## Plot
+```{python}
+#| fig-alt: "On a straight line, 9 points are marked that represent the predicted values of the linear model. Vertically above or below them, the measured values are shown. Each predicted value is connected to one of the measured values by a dashed vertical line."
+#| echo: false
+
+x = np.arange(1, 11)
+y = - x.copy() + 4
+y[0] -= 2
+y[2] -= 2
+y[3] += 3
+y[-3] += 5
+
+lm = poly.polyfit(x, y, 1)
+predicted_values = poly.polyval(x, lm)
+
+plt.scatter(x, predicted_values, label='Predicted values', marker="^", color="tab:blue")
+plt.scatter(x, y, label='Measured values', marker='o', color="tab:orange")
+plt.axline(xy1=(0, lm[0]), slope=lm[1], label="Regression line", color="tab:blue")
+dotted = plt.vlines(x, ymin=predicted_values, ymax=y, alpha=0.6, ls='dotted', label='Residuals')
+
+plt.legend()
+plt.show()
+
+print("Regression coefficients:", lm)
+```
+
+## Code
+```{python}
+#| fig-alt: "On a straight line, 9 points are marked that represent the predicted values of the linear model. Vertically above or below them, the observed values are shown. Each predicted value is connected to one of the observed values by a dotted vertical line."
+#| output: false
+
+x = np.arange(1, 11)
+y = -x.copy() + 4
+y[0] -= 2
+y[2] -= 2
+y[3] += 3
+y[-3] += 5
+
+lm = poly.polyfit(x, y, 1)
+predicted_values = poly.polyval(x, lm)
+
+plt.scatter(x, predicted_values, label='Predicted values', marker="^", color="tab:blue")
+plt.scatter(x, y, label='Observed values', marker='o', color="tab:orange")
+plt.axline(xy1=(0, lm[0]), slope=lm[1], label="Regression line", color="tab:blue")
+dotted = plt.vlines(x, ymin=predicted_values, ymax=y, alpha=0.6, ls='dotted', label='Residuals')
+
+plt.legend()
+plt.show()
+
+print("Regression coefficients:", lm)
+```
+
+::::
+
+&nbsp;
+
+The drawn straight line corresponds to the linear function $\hat{y} = \beta_0 + \beta_1 \cdot x + e_i$. The triangular markers represent the predicted values $\hat{y_i}$ of the linear model for the values $x_i = \texttt{np.arange(1, 11)}$. The actual observed values $y$ are marked with circular markers. The length of the dashed lines corresponds to the magnitude of the deviation between the observed and predicted values $y_i - \hat{y_i}$, i.e. the residuals $e_i$.
+
+The goal is to find the straight line that minimizes the sum of the squared residuals. The desired values $\beta_0$ and $\beta_1$ are the **least-squares estimators**.
+
+$$
+\beta_0 = \bar{y} - \beta_1 \cdot \bar{x}
+$$
+
+$$
+\beta_1 = { \sum_{i=1}^n (x_i- \bar{x}) \cdot (y_i - \bar{y}) \over \sum_{i=1}^n (x_i - \bar{x})^2 }
+$$
+
+For completeness, we derive the least-squares estimators. We are looking for values of $\beta_0$ and $\beta_1$ such that the sum of squared residuals $\sum_{i=1}^{n} e_i^2$ is as small as possible. The sum of squared residuals is the sum of the squared differences between the observed values $y_i$ and the values predicted by the linear function.
+
+$$
+\sum_{i=1}^{n} e_i^2 ~ = ~ \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i))^2
+$$
+
+We therefore investigate a function that depends on two variables.
+
+$$
+f(\beta_0, \beta_1) = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i))^2
+$$
+
+The summation symbol is shorthand notation for a sum.
+
+$$
+f(\beta_0, \beta_1) = (y_1 - (\beta_0 + \beta_1 \cdot x_1))^2 ~ + ~ (y_2 - (\beta_0 + \beta_1 \cdot x_2))^2 ~ + ~ ... ~ (y_n - (\beta_0 + \beta_1 \cdot x_n))^2
+$$
+
+At the minimum of the function, both partial derivatives must be equal to zero 
+(why this is the case is explained clearly [here](https://www.sofatutor.com/mathematik/funktionen/funktionen-mehrerer-veraenderlicher/lokale-extrempunkte-bei-funktionen-mit-mehreren-veraenderlichen).)
+
+:::: {#nte-partial-derivative .callout-note collapse="true"}
+## Partial derivative
+A partial derivative is the derivative of a function with several variables with respect to one variable, while the other variables are treated as constants.
+
+For a function $f(x, y) = 2x + y^2$, the partial derivative with respect to $x$ is written as:
+
+$\frac{\partial f(x, y)}{\partial x}$
+
+- The symbol ∂ is the cursive form of the Cyrillic lowercase letter д (d) and is read as “del”. It indicates that a partial derivative is taken.
+- The numerator contains the function to be differentiated. The denominator contains the variable with respect to which the differentiation is performed. The expression is read as “del f of x and y with respect to del x”.
+
+The partial derivative  
+$\frac{\partial f(x, y)}{\partial x} = 2$.  
+The term $y^2$ is treated as a constant (e.g. $5^2$) and its derivative is zero.
+
+The partial derivative  
+$\frac{\partial f(x, y)}{\partial y} = 2y$.  
+The term $2x$ is treated as a constant (e.g. $2 \cdot 3$) and its derivative is zero.
+::::
+
+In both partial derivatives, $x_i$ and $y_i$ are constants.  
+In the partial derivative with respect to $\beta_0$, $\beta_1$ is also constant;  
+in the partial derivative with respect to $\beta_1$, $\beta_0$ is constant accordingly.
+
+:::: {.panel-tabset}
+
+## Partial derivative with respect to the y-intercept
+For the partial derivative with respect to $\beta_0$, the chain rule applies to the outer function (top) and the inner function (middle):
+
+$$ \begin{aligned}
+\frac{\partial f(\beta_0, \beta_1)}{\partial \beta_0} = 2 \cdot (y_1 - (\beta_0 + \beta_1 \cdot x_1)) ~ + ~ ... ~ (y_n - (\beta_0 + \beta_1 \cdot x_n)) = 2 \cdot \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i)) ~ \cdot
+\newline 
+(0 - (1 + 0 \cdot 0)) ~ + ~ ... ~ (0 - (1 + 0 \cdot 0)) = \sum_{i=1}^{n} (0 - (1 + 0 \cdot 0)) =
+\newline
+2 \cdot \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i)) ~ \cdot (-1)
+\end{aligned}
+$$
+
+Thus, for the partial derivative with respect to $\beta_0$:
+
+$$
+\frac{\partial f(\beta_0, \beta_1)}{\partial \beta_0} = -2 \cdot \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i)) = 0
+$$
+
+This expression can be simplified by dropping the prefactor $-2$ (since $-2 \cdot 0 = 0$) and resolving the signs:
+
+$$
+\sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 \cdot x_i) = 0
+$$
+
+This can also be written as:
+
+$$
+\sum_{i=1}^{n} y_i - \sum_{i=1}^{n} \beta_0 - \sum_{i=1}^{n} \beta_1 \cdot x_i = 0
+$$
+
+$\beta_0$ and $\beta_1$ are constants, so  
+$\sum_{i=1}^{n} \beta_0  = \beta_0 \cdot \sum_{i=1}^{n} 1 = \beta_0 \cdot n$ and  
+$\sum_{i=1}^{n} \beta_1 \cdot x_i = \beta_1 \cdot \sum_{i=1}^{n} 1 \cdot x_i$.  
+Thus:
+
+$$
+\sum_{i=1}^{n} y_i - n \cdot \beta_0 - \beta_1 \cdot \sum_{i=1}^{n} x_i = 0
+$$
+
+Dividing by $n$, we obtain the arithmetic means  
+$\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i$ and  
+$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$, yielding:
+
+$$
+\bar{y} - \beta_0 - \beta_1 \cdot \bar{x} = 0
+$$
+
+Rearranging gives:
+
+$$
+\beta_0 = \bar{y} - \beta_1 \cdot \bar{x}
+$$
+
+## Partial derivative with respect to the slope
+For the partial derivative with respect to $\beta_1$, the chain rule is applied again, so the outer function is differentiated in the same way:
+
+$$ \begin{aligned}
+\frac{\partial f(\beta_0, \beta_1)}{\partial \beta_1} = 2 \cdot (y_1 - (\beta_0 + \beta_1 \cdot x_1)) ~ + ~ ... ~ (y_n - (\beta_0 + \beta_1 \cdot x_n)) = 2 \cdot \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i)) ~ \cdot
+\newline 
+(0 - (0 + 1 \cdot x_1)) ~ + ~ ... ~ (0 - (0 + 1 \cdot x_n)) ~ = ~ \sum_{i=1}^{n} -x_i = 
+\newline
+2 \cdot \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 \cdot x_i)) ~ \cdot -x_i
+\end{aligned}
+$$
+
+Thus:
+
+$$
+\frac{\partial f(\beta_0, \beta_1)}{\partial \beta_1} = -2 \sum_{i=1}^{n} x_i \cdot (y_i - (\beta_0 + \beta_1 \cdot x_i)) = 0
+$$
+
+This can also be simplified by omitting the prefactor $-2$ (since $-2 \cdot 0 = 0$ must hold) and resolving the signs. In addition, the expression can be expanded:
+
+
+$$
+\sum_{i=1}^{n} x_iy_i - \sum_{i=1}^{n}  \beta_0 \cdot x_i - \sum_{i=1}^{n}  \beta_1 \cdot x_ix_i = 0
+$$
+
+Extracting constants:
+
+$$
+\sum_{i=1}^{n} x_iy_i - \beta_0 \cdot \sum_{i=1}^{n} x_i - \beta_1 \cdot \sum_{i=1}^{n} x_ix_i = 0
+$$
+
+Substituting $\beta_0 = \bar{y} - \beta_1 \cdot \bar{x}$ and $\sum_{i=1}^{n} x_i = n \cdot \bar{x}$:
+
+$$
+\sum_{i=1}^{n} x_iy_i - (\bar{y} - \beta_1 \cdot \bar{x}) \cdot  n \cdot \bar{x} - \beta_1 \cdot \sum_{i=1}^{n} x_ix_i = 0
+$$
+
+Expanding the middle term and writing $x_i x_i$ as $x_i^2$:
+
+$$
+\sum_{i=1}^{n} x_iy_i - n\bar{x}\bar{y} - \beta_1 \cdot n\bar{x}\bar{x} - \beta_1 \cdot \sum_{i=1}^{n} x_i^2 = 0
+$$
+
+Combining the last two terms:
+
+$$
+\sum_{i=1}^{n} x_iy_i - n\bar{x}\bar{y} - \beta_1 \cdot ( \sum_{i=1}^{n} x_i^2 - n \bar{x}^2) = 0
+$$
+
+Solving for $\beta_1$:
+
+$$
+\beta_1 \cdot ( \sum_{i=1}^{n} x_i^2 - n \bar{x}^2) = \sum_{i=1}^{n} x_iy_i - n\bar{x}\bar{y}
+$$
+
+Then:
+$$
+\beta_1 = \frac{\sum_{i=1}^{n} x_i y_i - n \bar{x}\bar{y}}{\sum_{i=1}^{n} x_i^2 - n \bar{x}^2}
+$$
+
+Now, one can first rewrite using $\sum_{i=1}^{n} x_i^2 - n \bar{x}^2 = \sum_{i=1}^{n} (x_i - \bar{x})^2$.
+$$
+\beta_1 = \frac{\sum_{i=1}^{n} x_i y_i - n \bar{x}\bar{y}}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+$$
+
+Then—and this will be shown next—using $\sum_{i=1}^{n} x_i y_i - n \bar{x}\bar{y} = \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})$. Thus, we obtain:
+$$
+\beta_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
+$$
+
+The last step is shown starting from the result and begins with expanding the product:
+$$
+\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \sum_{i=1}^{n} (x_i y_i - x_i \bar{y} - \bar{x} y_i + \bar{x}\bar{y})
+$$
+
+This can also be written as:
+$$
+\sum_{i=1}^{n} x_i y_i - \sum_{i=1}^{n} x_i \bar{y} - \sum_{i=1}^{n} \bar{x} y_i + \sum_{i=1}^{n} \bar{x}\bar{y}
+$$
+
+$\bar{x}$ and $\bar{y}$ are constants, so this can be written as $\bar{x} \cdot \sum_{i=1}^{n} y_i$ and $\bar{y} \cdot \sum_{i=1}^{n} x_i$. Since $\sum_{i=1}^{n} x_i = n \cdot \bar{x}$ (analogously for $y$), we obtain:
+
+$$
+\sum_{i=1}^{n} x_i y_i - \bar{y} \cdot n \cdot \bar{x} - \bar{x} \cdot n \cdot \bar{y} + \sum_{i=1}^{n} \bar{x}\bar{y}
+$$
+
+Rearranging:
+$$
+\sum_{i=1}^{n} x_i y_i - n \bar{x}\bar{y} - n \bar{x}\bar{y} + \sum_{i=1}^{n} \bar{x}\bar{y}
+$$
+
+The last term $\sum_{i=1}^{n} \bar{x}\bar{y}$ can also be written as $n \cdot \bar{x}\bar{y}$, which yields:
+$$
+\sum_{i=1}^{n} x_i y_i - n \bar{x}\bar{y} - n \bar{x}\bar{y} + n \bar{x}\bar{y}
+$$
+
+Thus, the last two terms cancel out, leaving:
+$$
+\sum_{i=1}^{n} x_i y_i - n \bar{x}\bar{y}
+$$
+
+[@Baitsch-2019, pp. 73–74]
+
+
+::::
+:::
+
+In this chapter, the following methods for data modeling are introduced:
+
+1. Polynomial interpolation  
+2. Data fitting using polynomials  
+3. Data fitting using splines

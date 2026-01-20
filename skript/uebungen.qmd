@@ -1,0 +1,273 @@
+# Exercises
+
+```{python}
+#| echo: false
+import numpy as np
+import numpy.polynomial.polynomial as poly
+import matplotlib.pyplot as plt
+import scipy.interpolate as si
+```
+
+## Exercise: Analyzing Balloon Flight Data
+The file '01-daten/messdaten-ballonfahrt.txt' contains measurement data for the altitude of a balloon during a flight. The first line of the file lists the measured quantities and their units.
+
+```{python}
+# Read file header as a string
+balloon = np.genfromtxt("01-daten/messdaten-ballonfahrt.txt", delimiter=",", max_rows=4, dtype='str')
+
+print("The header of the file:")
+print(balloon)
+```
+
+Let us take a look at the data:
+
+```{python}
+#| echo: false
+#| fig-alt: "Visualization of the balloon's altitude over time on the x-axis."
+balloon_data = np.genfromtxt("01-daten/messdaten-ballonfahrt.txt", delimiter=",", skip_header=1)
+time = balloon_data[:, 0]
+altitude = balloon_data[:, 1]
+
+plt.scatter(time, altitude)
+plt.title("Balloon Flight – Altitude over Time")
+plt.xlabel("Time (s)")
+plt.ylabel("Altitude (m)")
+plt.grid(True)
+plt.show()
+```
+
+&nbsp;
+
+We are looking for a polynomial that describes the ascent rate, i.e., the rate of change of height over time, of the hot air balloon. 
+
+Write a program that:
+
+  - reads the height from the data and calculates the ascent rate,
+  - fits the ascent rate with a third-degree polynomial.
+
+Plot the height, the ascent rate, and the fit each against time. Label the axes.
+
+::: {#tip-sample-solution-balloon .callout-tip collapse="true"}
+## Sample Solution: Balloon Flight
+
+First, read in the data.
+```{python}
+# Read data
+balloon = np.genfromtxt("01-daten/messdaten-ballonfahrt.txt", delimiter=",", skip_header=1)
+time = balloon[:, 0]
+height = balloon[:, 1]
+```
+
+
+Next, we calculate the ascent rate $\frac{\Delta Höhe}{\Delta Zeit}$. For this, we use the function `np.diff()`. It computes the difference of each value to its predecessor: `result[i] = value[i+1] - value[i]`. Therefore, no difference is calculated for the i-th value, and the result is one element shorter. The ascent rate in meters per second is obtained by dividing the two sequences.
+```{python}
+# Calculate differences
+
+delta_height = np.diff(height)
+print("Change in height: ", delta_height[0:4])
+
+delta_time = np.diff(time)
+print("Change in time: ", delta_time[0:4])
+
+# Calculate ascent rate
+
+ascent_rate = delta_height / delta_time
+print("Ascent rate: ", ascent_rate[0:4])
+```
+
+Using `numpy.polynomial.polynomial.polyfit()`, we first fit a third-degree polynomial, then use `numpy.polynomial.polynomial.polyval()` to evaluate the fitted data.
+
+```{python}
+poly3_ascent_rate = poly.polyfit(time[:-1], ascent_rate, deg = 3)
+
+fit_ascent_rate = poly.polyval(x = time[:-1], c = poly3_ascent_rate)
+```
+
+```{python}
+#| fig-alt: "Visualization of the balloon's altitude, ascent rate, and fitted ascent rate over time on the x-axis."
+
+# plotting
+
+plt.suptitle("Balloon Flight")
+
+## subplot: altitude over time
+
+plt.subplot(1, 3, 1)
+plt.scatter(time, altitude)
+plt.title("Altitude")
+plt.xlabel("Time (s)")
+plt.ylabel("Altitude (m)")
+plt.grid(True)
+
+## subplot: ascent rate over time
+
+## length of the ascent_rate array is n-1
+
+plt.subplot(1, 3, 2)
+plt.scatter(time[:-1], ascent_rate)
+plt.title("Ascent Rate")
+plt.xlabel("Time (s)")
+plt.ylabel("Ascent Rate (m/s)")
+plt.grid(True)
+
+## subplot: cubic polynomial fitted ascent rate over time
+
+## length of the ascent_rate array is n-1
+
+plt.subplot(1, 3, 3)
+plt.plot(time[:-1], fit_ascent_rate)
+plt.title("Fitted\nAscent Rate")
+plt.xlabel("Time (s)")
+plt.ylabel("Ascent Rate (m/s)")
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
+```
+
+:::
+
+## Exercise: Beam Deflection in Civil Engineering
+
+A beam is loaded at its center.
+
+::: {.border}
+![Example of a beam deflection experiment setup](00-bilder/balkenverformung-universit%C3%A4t-der-bundeswehr.jpeg)
+
+Beam deflection from the University of the Bundeswehr Munich. The work is available on the website of [UniBw M](https://www.unibw.de/mechanik-und-statik/bs/labor-baustatik/ermittlung-der-verformung-von-geraden-balken). No year specified.
+
+:::
+
+&nbsp;
+
+Let's take a look at the structure of the data.
+```{python}
+beam = np.genfromtxt("01-daten/balken-durchbiegung.csv", delimiter=",", max_rows=4, dtype='str')
+
+print("The header of the file:")
+print(beam)
+```
+
+The deflection is measured at 50 points. Smooth the data and display both the measured and smoothed data together.
+
+::: {#tip-beam-solution .callout-tip collapse="true"}
+## Example Solution Beam
+
+```{python}
+#| fig-alt: "Visualization of the measured data and the smoothed beam deflection as an inverted U."
+
+beam = np.genfromtxt("01-daten/balken-durchbiegung.csv", delimiter=",", skip_header=1)
+x = beam[:, 0]
+y = beam[:, 1]
+
+window = 7
+weights = np.ones(window) / window
+y_smooth = np.convolve(y, weights, mode='valid')
+
+plt.plot(x, y, label="Measurement", alpha=0.5)
+plt.plot(x[(window-1)//2:-(window//2)], y_smooth, label="Smoothed", color='red')
+plt.title("Deflection of a Beam")
+plt.xlabel("Position (m)")
+plt.ylabel("Deflection (mm)")
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+:::
+
+## Exercise: Neutron Scattering
+The file '01-daten/neutronen.txt' contains data from a neutron scattering experiment. The file header:
+
+```{python}
+# Read file header as a string
+neutrons = np.genfromtxt("01-daten/neutronen.txt", delimiter="\t", max_rows=4, dtype='str')
+print(neutrons)
+```
+
+In the column 'E(MeV)', the energy of a neutron fired at a target is listed in mega-electronvolts. In the column 'sigma(mb)', the cross section, measured in millibarns (mb), is listed. In the column 'Delta sigma(mb)', the uncertainty of the measured cross section, also in millibarns (mb), is listed. 
+
+1. Read in the data
+2. Try to fit the first two columns with a polynomial of a suitable degree and display the result graphically.
+3. Fit the data again, but this time use splines.
+4. Display the result graphically as well and compare it with the polynomial fit.
+5. What are the advantages and disadvantages of each method?
+
+::: {#tip-sample-solution-neutron .callout-tip collapse="true"}
+## Sample Solution: Neutron Scattering
+
+1. Read in the data
+```{python}
+#| fig-alt: "Plot of the measured data"
+
+neutrons = np.genfromtxt("01-daten/neutronen.txt", delimiter="\t", skip_header=1)
+neutron_energy = neutrons[:, 0]
+cross_section = neutrons[:, 1]
+
+plt.plot(neutron_energy, cross_section, label="Measured data", alpha=0.5)
+plt.xlabel("Neutron Energy (MeV)")
+plt.ylabel("Cross Section (mb)")
+plt.legend()
+plt.grid(True)
+
+plt.show()
+```
+
+&nbsp;
+
+2. + 3. Polynomial and Spline Fitting
+```{python}
+# Polynomial
+
+polynomial5 = poly.polyfit(neutron_energy, cross_section, deg=5)
+fit = poly.polyval(x=neutron_energy, c=polynomial5)
+
+# Splines with SciPy
+
+spline3 = si.splrep(neutron_energy, cross_section)
+y_spline3 = si.splev(neutron_energy, spline3)
+
+# Splines with NumPy
+
+x_new = np.linspace(neutron_energy.min(), neutron_energy.max(), num=50)
+y_spline1 = np.interp(x_new, neutron_energy, cross_section)  # linear interpolation
+```
+
+4. Graphical Representation
+```{python}
+#| fig-alt: "Two stacked subplots show the measurement data together with a fitted polynomial and cubic splines (top) vs. linear splines (bottom). Both splines are identical."
+
+plt.figure(figsize=[7, 5])
+
+# Comparison with cubic splines
+
+plt.subplot(2, 1, 1)
+plt.plot(neutron_energy, cross_section, linewidth=5, alpha=0.3, label="Measurement data")
+plt.plot(neutron_energy, fit, label="Fitted polynomial")
+plt.plot(neutron_energy, y_spline3, linestyle='dashdot', label="Cubic splines")
+plt.xlabel("Neutron energy (MeV)")
+plt.ylabel("Cross section (mb)")
+plt.legend()
+plt.grid(True)
+
+# Comparison with linear splines
+
+plt.subplot(2, 1, 2)
+plt.plot(neutron_energy, cross_section, linewidth=5, alpha=0.3, label="Measurement data")
+plt.plot(neutron_energy, fit, label="Fitted polynomial")
+plt.plot(x_new, y_spline1, linestyle='dotted', label="Linear splines")
+plt.xlabel("Neutron energy (MeV)")
+plt.ylabel("Cross section (mb)")
+plt.legend()
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()
+```
+
+&nbsp;
+
+5.: The splines match the data exactly. This can be an advantage if no smoothing of the data is desired. The polynomial, on the other hand, is not fitted exactly to the data. However, all data points can be approximated using a single model equation.
+
+:::

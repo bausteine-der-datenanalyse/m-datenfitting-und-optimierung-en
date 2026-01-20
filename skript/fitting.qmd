@@ -1,0 +1,78 @@
+# Fitting
+
+```{python}
+#| echo: false
+import numpy as np
+import numpy.polynomial.polynomial as poly
+import matplotlib.pyplot as plt
+```
+
+Fitting involves finding a model function that does not necessarily match the measured data exactly. If a polynomial is used, its degree is much smaller than the number of data points. Linear regression is an example of fitting with a polynomial of degree one.
+
+To fit using a polynomial, you can use the function `numpy.polynomial.polynomial.polyfit()`, just like with polynomial interpolation, but this time with a smaller polynomial degree.
+
+In the following example, model data are first generated and then fitted with appropriate polynomials.
+
+```{python}
+#| fig-alt: "Representation of model data that trend from bottom-left to top-right."
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+xmin = 0
+xmax = 5
+x = np.linspace(xmin, xmax, 100)
+
+ni = 25  # number of data points
+
+# x-values with slight noise
+
+xi = np.linspace(xmin, xmax, ni) + 0.2 * (2 * np.random.random(ni) - 1)
+
+# y(x) = 2*x + 0.5 with slight noise
+
+yi = 2 * xi + 0.5 + 2 * (2 * np.random.random(ni) - 1)
+
+plt.scatter(xi, yi, color='C1')
+plt.grid()
+plt.show()
+```
+
+```{python}
+#| fig-alt: "Visualization of model data trending from bottom-left to top-right, with a linear model function."
+
+P1 = poly.polyfit(xi, yi, 1)
+
+plt.scatter(xi, yi, color='C1', zorder=3, label='Data points')
+plt.plot(x, poly.polyval(x, P1), color='C0', label="Model function")
+plt.grid()
+plt.legend()
+
+plt.show()
+```
+
+In this example, a first-degree polynomial and a second-degree polynomial are determined.
+```{python}
+# x-values with slight noise
+
+xi = np.linspace(xmin, xmax, ni) + 0.2*(2 * np.random.random(ni) - 1)
+
+# y(x) = (x-2)^2 - 2x + 2.5 with slight noise
+
+yi = (xi - 2)**2 - 2*xi + 2.5 + 2*(2 * np.random.random(ni) - 1)
+```
+
+```{python}
+#| fig-alt: "Visualization of model data that is roughly U-shaped, along with a linear and a quadratic model function."
+
+P1 = poly.polyfit(xi, yi, 1)
+P2 = poly.polyfit(xi, yi, 2)
+
+plt.scatter(xi, yi, color='C1', zorder=3, label='Data points')
+plt.plot(x, poly.polyval(x, P1), color='C0', label="Model function, degree 1")
+plt.plot(x, poly.polyval(x, P2), color='C2', label="Model function, degree 2")
+plt.grid()
+plt.legend()
+
+plt.show()
+```

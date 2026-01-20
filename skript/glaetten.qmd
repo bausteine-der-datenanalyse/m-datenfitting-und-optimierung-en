@@ -1,0 +1,29 @@
+# Trend Smoothing – Reducing Noise
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+Noisy data? A **moving average** smooths curves:
+
+```{python}
+#| fig-alt: "Visualization of data forming a waveform from left to right. The smoothed curve is overlaid on top."
+
+data = np.genfromtxt("01-daten/trenddaten-mit-rauschen.csv", delimiter=",", skip_header=1)
+x = data[:, 0]
+y = data[:, 1]
+
+window = 5
+weights = np.ones(window) / window
+y_smooth = np.convolve(y, weights, mode='valid')
+
+plt.plot(x, y, label="Original", alpha=0.5)
+plt.plot(x[(window-1)//2:-(window//2)], y_smooth, label="Smoothed", color='red')
+plt.legend()
+plt.grid(True)
+plt.title("Trend Smoothing")
+
+plt.show()
+```

@@ -1,0 +1,82 @@
+# Data Analysis and Modeling
+
+## Introduction
+
+In this unit, you will learn how to process and analyze real-world measurement data – for example from experiments 
+or engineering projects – using NumPy and Matplotlib. The focus is on practical handling of data in CSV format.
+
+## Learning Objectives of This Chapter
+
+In this unit, you will learn:
+
+- how to convert structured CSV data into NumPy arrays,
+- how to identify and replace missing values,
+- how to calculate common statistical metrics,
+- how to visualize data with Matplotlib,
+- how to interpolate data and smooth trends,
+- and how to analyze real-world applications – e.g., from civil engineering.
+
+
+## CSV Files: A Typical Format for Measurement Data
+
+CSV files (“Comma Separated Values”) are widely used – for example, for:
+
+- temperature recordings,
+- experimental measurement series,
+- sensor log data.
+
+We begin with an example: temperature, humidity, and CO₂ values. 
+This file also contains some **missing values**, as often found in real-world data.
+
+```{python}
+import numpy as np
+data = np.genfromtxt("01-daten/beispiel.csv", delimiter=",", skip_header=1)
+print(data)
+```
+
+
+## Detecting and Cleaning Missing Values
+
+Missing values are encoded as `np.nan` (Not a Number) when reading in data. First, let's count how many values are missing:
+
+```{python}
+print(np.isnan(data).sum(axis=0))
+```
+
+To avoid distorting the analysis, they are replaced – e.g., with the column mean:
+
+```{python}
+for i in range(data.shape[1]):
+    mean = np.nanmean(data[:, i])
+    data[:, i] = np.where(np.isnan(data[:, i]), mean, data[:, i])
+```
+
+## Calculating Statistical Metrics
+
+Common metrics for describing data:
+
+- **Mean**: Average
+- **Standard Deviation**: Spread
+- **Minimum and Maximum**
+
+```{python}
+print("Means:", np.mean(data, axis=0))
+print("Standard Deviation:", np.std(data, axis=0))
+```
+
+## Visualizing Data
+
+With Matplotlib, data can be presented in a clear and organized way. For example, line plots and histograms are commonly used.
+
+```{python}
+import matplotlib.pyplot as plt
+
+labels = ["Temperature (°C)", "Humidity (%)", "CO₂ (ppm)"]
+
+for i in range(data.shape[1]):
+    plt.plot(data[:, i], label=labels[i])
+plt.legend()
+plt.title("Measurements Over Time")
+plt.grid(True)
+plt.show()
+```
