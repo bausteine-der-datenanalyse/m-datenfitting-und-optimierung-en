@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.10.18">
@@ -96,17 +96,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "Keine Treffer",
-    "search-matching-documents-text": "Treffer",
-    "search-copy-link-title": "Link in die Suche kopieren",
-    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
-    "search-more-match-text": "weitere Treffer in diesem Dokument",
-    "search-more-matches-text": "weitere Treffer in diesem Dokument",
-    "search-clear-button-title": "Zurücksetzen",
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Abbrechen",
-    "search-submit-button-title": "Abschicken",
-    "search-label": "Suchen"
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <link rel="shortcut icon" href="skript/00-bilder/favicon_bcd_new.svg">
@@ -150,13 +150,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../skript/uebungen.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -172,12 +172,12 @@ window.Quarto = {
       <img src="../skript/00-bilder/logo_with_text_new.svg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Methodenbaustein Datenfitting und Datenoptimierung</a> 
+      <a href="../">Data Fitting and Optimization Method Module</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Suchen"></div>
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -231,7 +231,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#exercise-analyzing-balloon-flight-data" id="toc-exercise-analyzing-balloon-flight-data" class="nav-link active" data-scroll-target="#exercise-analyzing-balloon-flight-data"><span class="header-section-number">6.1</span> Exercise: Analyzing Balloon Flight Data</a></li>
@@ -265,12 +265,12 @@ window.Quarto = {
 <section id="exercise-analyzing-balloon-flight-data" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="exercise-analyzing-balloon-flight-data"><span class="header-section-number">6.1</span> Exercise: Analyzing Balloon Flight Data</h2>
 <p>The file ‘01-daten/messdaten-ballonfahrt.txt’ contains measurement data for the altitude of a balloon during a flight. The first line of the file lists the measured quantities and their units.</p>
-<div id="8d8ef286" class="cell" data-execution_count="2">
+<div id="dafbb64e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file header as a string</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>balloon <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/messdaten-ballonfahrt.txt"</span>, delimiter<span class="op">=</span><span class="st">","</span>, max_rows<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span><span class="st">'str'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The header of the file:"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balloon)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(balloon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The header of the file:
 [['Zeit (s)' 'Hoehe (m)']
@@ -280,7 +280,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Let us take a look at the data:</p>
-<div id="daf18b5d" class="cell" data-execution_count="3">
+<div id="07122aca" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -303,21 +303,21 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tipp&nbsp;6.1: Sample Solution: Balloon Flight
+Tip&nbsp;6.1: Sample Solution: Balloon Flight
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>First, read in the data.</p>
-<div id="e1e19e51" class="cell" data-execution_count="4">
+<div id="e0bac132" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>balloon <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/messdaten-ballonfahrt.txt"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> balloon[:, <span class="dv">0</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> balloon[:, <span class="dv">1</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> balloon[:, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, we calculate the ascent rate <span class="math inline">\(\frac{\Delta Höhe}{\Delta Zeit}\)</span>. For this, we use the function <code>np.diff()</code>. It computes the difference of each value to its predecessor: <code>result[i] = value[i+1] - value[i]</code>. Therefore, no difference is calculated for the i-th value, and the result is one element shorter. The ascent rate in meters per second is obtained by dividing the two sequences.</p>
-<div id="3b594a9f" class="cell" data-execution_count="5">
+<div id="8baffc13" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate differences</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>delta_height <span class="op">=</span> np.diff(height)</span>
@@ -329,7 +329,7 @@ Tipp&nbsp;6.1: Sample Solution: Balloon Flight
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate ascent rate</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ascent_rate <span class="op">=</span> delta_height <span class="op">/</span> delta_time</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ascent rate: "</span>, ascent_rate[<span class="dv">0</span>:<span class="dv">4</span>])</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ascent rate: "</span>, ascent_rate[<span class="dv">0</span>:<span class="dv">4</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Change in height:  [ 2.18551481 -2.05482638  0.32026988  1.12796595]
 Change in time:  [2.02020202 2.02020202 2.02020202 2.02020202]
@@ -337,12 +337,12 @@ Ascent rate:  [ 1.08182983 -1.01713906  0.15853359  0.55834314]</code></pre>
 </div>
 </div>
 <p>Using <code>numpy.polynomial.polynomial.polyfit()</code>, we first fit a third-degree polynomial, then use <code>numpy.polynomial.polynomial.polyval()</code> to evaluate the fitted data.</p>
-<div id="eb457d17" class="cell" data-execution_count="6">
+<div id="3614ae99" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>poly3_ascent_rate <span class="op">=</span> poly.polyfit(time[:<span class="op">-</span><span class="dv">1</span>], ascent_rate, deg <span class="op">=</span> <span class="dv">3</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fit_ascent_rate <span class="op">=</span> poly.polyval(x <span class="op">=</span> time[:<span class="op">-</span><span class="dv">1</span>], c <span class="op">=</span> poly3_ascent_rate)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fit_ascent_rate <span class="op">=</span> poly.polyval(x <span class="op">=</span> time[:<span class="op">-</span><span class="dv">1</span>], c <span class="op">=</span> poly3_ascent_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="28355210" class="cell" data-execution_count="7">
+<div id="04931517" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Balloon Flight"</span>)</span>
@@ -379,7 +379,7 @@ Ascent rate:  [ 1.08182983 -1.01713906  0.15853359  0.55834314]</code></pre>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -406,11 +406,11 @@ Ascent rate:  [ 1.08182983 -1.01713906  0.15853359  0.55834314]</code></pre>
 </div>
 <p>&nbsp;</p>
 <p>Let’s take a look at the structure of the data.</p>
-<div id="4d28bf4b" class="cell" data-execution_count="8">
+<div id="2b6f5ad1" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>beam <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/balken-durchbiegung.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, max_rows<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span><span class="st">'str'</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The header of the file:"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beam)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beam)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The header of the file:
 [['Position (m)' 'Durchbiegung (mm)']
@@ -426,13 +426,13 @@ Ascent rate:  [ 1.08182983 -1.01713906  0.15853359  0.55834314]</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tipp&nbsp;6.2: Example Solution Beam
+Tip&nbsp;6.2: Example Solution Beam
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="f43958ae" class="cell" data-execution_count="9">
+<div id="6bcb3d8f" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>beam <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/balken-durchbiegung.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> beam[:, <span class="dv">0</span>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> beam[:, <span class="dv">1</span>]</span>
@@ -449,7 +449,7 @@ Tipp&nbsp;6.2: Example Solution Beam
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -465,10 +465,10 @@ Tipp&nbsp;6.2: Example Solution Beam
 <section id="exercise-neutron-scattering" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="exercise-neutron-scattering"><span class="header-section-number">6.3</span> Exercise: Neutron Scattering</h2>
 <p>The file ‘01-daten/neutronen.txt’ contains data from a neutron scattering experiment. The file header:</p>
-<div id="78eb2925" class="cell" data-execution_count="10">
+<div id="669e0b88" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file header as a string</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>neutrons <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/neutronen.txt"</span>, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, max_rows<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span><span class="st">'str'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(neutrons)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(neutrons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[['E(MeV)' 'sigma(mb)' 'Delta sigma(mb)']
  ['0.00' '10.60' ' 1.39']
@@ -490,7 +490,7 @@ Tipp&nbsp;6.2: Example Solution Beam
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
+Tip&nbsp;6.3: Sample Solution: Neutron Scattering
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -499,7 +499,7 @@ Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
 <ol type="1">
 <li>Read in the data</li>
 </ol>
-<div id="4da2895e" class="cell" data-execution_count="11">
+<div id="1a35e1fc" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>neutrons <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/neutronen.txt"</span>, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>neutron_energy <span class="op">=</span> neutrons[:, <span class="dv">0</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>cross_section <span class="op">=</span> neutrons[:, <span class="dv">1</span>]</span>
@@ -510,7 +510,7 @@ Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -527,7 +527,7 @@ Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
 </ol></li>
 </ul></li>
 </ol>
-<div id="b2d73f83" class="cell" data-execution_count="12">
+<div id="a79ae56f" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Polynomial</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>polynomial5 <span class="op">=</span> poly.polyfit(neutron_energy, cross_section, deg<span class="op">=</span><span class="dv">5</span>)</span>
@@ -541,12 +541,12 @@ Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Splines with NumPy</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>x_new <span class="op">=</span> np.linspace(neutron_energy.<span class="bu">min</span>(), neutron_energy.<span class="bu">max</span>(), num<span class="op">=</span><span class="dv">50</span>)</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>y_spline1 <span class="op">=</span> np.interp(x_new, neutron_energy, cross_section)  <span class="co"># linear interpolation</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>y_spline1 <span class="op">=</span> np.interp(x_new, neutron_energy, cross_section)  <span class="co"># linear interpolation</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="4" type="1">
 <li>Graphical Representation</li>
 </ol>
-<div id="ababf67a" class="cell" data-execution_count="13">
+<div id="8adfcfd9" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>[<span class="dv">7</span>, <span class="dv">5</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison with cubic splines</span></span>
@@ -572,7 +572,7 @@ Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
 <span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -616,12 +616,12 @@ Tipp&nbsp;6.3: Sample Solution: Neutron Scattering
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Kopiert");
+      button.setAttribute("title", "Copied!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Kopiert");
+        button.setAttribute("data-bs-title", "Copied!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
