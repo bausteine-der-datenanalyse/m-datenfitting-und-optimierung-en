@@ -1,6 +1,6 @@
 # Prerequisites
 
-The estimated completion time for this module is approximately **placeholder**. The following modules are required to work on this unit:
+The estimated completion time for this module is approximately **10 hours**. The following modules are required to work on this unit:
 
 - Python tool module
 - NumPy tool module

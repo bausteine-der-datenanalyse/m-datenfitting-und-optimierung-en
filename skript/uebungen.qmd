@@ -59,7 +59,7 @@ height = balloon[:, 1]
 ```
 
 
-Next, we calculate the ascent rate $\frac{\Delta Höhe}{\Delta Zeit}$. For this, we use the function `np.diff()`. It computes the difference of each value to its predecessor: `result[i] = value[i+1] - value[i]`. Therefore, no difference is calculated for the i-th value, and the result is one element shorter. The ascent rate in meters per second is obtained by dividing the two sequences.
+Next, we calculate the ascent rate $\frac{\Delta \text{height}}{\Delta \text{time}}$. For this, we use the function `np.diff()`. It computes the difference of each value to its predecessor: `result[i] = value[i+1] - value[i]`. Therefore, no difference is calculated for the i-th value, and the result is one element shorter. The ascent rate in meters per second is obtained by dividing the two sequences.
 ```{python}
 # Calculate differences
 
