@@ -185,7 +185,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Methodenbaustein Datenfitting und Datenoptimierung</span></a>
+ <span class="menu-text">Data Fitting and Optimization Method Module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -265,7 +265,7 @@ window.Quarto = {
 <section id="exercise-analyzing-balloon-flight-data" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="exercise-analyzing-balloon-flight-data"><span class="header-section-number">6.1</span> Exercise: Analyzing Balloon Flight Data</h2>
 <p>The file ‘01-daten/messdaten-ballonfahrt.txt’ contains measurement data for the altitude of a balloon during a flight. The first line of the file lists the measured quantities and their units.</p>
-<div id="dafbb64e" class="cell" data-execution_count="2">
+<div id="d0053625" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file header as a string</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>balloon <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/messdaten-ballonfahrt.txt"</span>, delimiter<span class="op">=</span><span class="st">","</span>, max_rows<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span><span class="st">'str'</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -280,7 +280,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Let us take a look at the data:</p>
-<div id="07122aca" class="cell" data-execution_count="3">
+<div id="bf7c8c33" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -310,14 +310,14 @@ Tip&nbsp;6.1: Sample Solution: Balloon Flight
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>First, read in the data.</p>
-<div id="e0bac132" class="cell" data-execution_count="4">
+<div id="8e9d21c3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>balloon <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/messdaten-ballonfahrt.txt"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> balloon[:, <span class="dv">0</span>]</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> balloon[:, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Next, we calculate the ascent rate <span class="math inline">\(\frac{\Delta Höhe}{\Delta Zeit}\)</span>. For this, we use the function <code>np.diff()</code>. It computes the difference of each value to its predecessor: <code>result[i] = value[i+1] - value[i]</code>. Therefore, no difference is calculated for the i-th value, and the result is one element shorter. The ascent rate in meters per second is obtained by dividing the two sequences.</p>
-<div id="8baffc13" class="cell" data-execution_count="5">
+<p>Next, we calculate the ascent rate <span class="math inline">\(\frac{\Delta \text{height}}{\Delta \text{time}}\)</span>. For this, we use the function <code>np.diff()</code>. It computes the difference of each value to its predecessor: <code>result[i] = value[i+1] - value[i]</code>. Therefore, no difference is calculated for the i-th value, and the result is one element shorter. The ascent rate in meters per second is obtained by dividing the two sequences.</p>
+<div id="e3d3fa00" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate differences</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>delta_height <span class="op">=</span> np.diff(height)</span>
@@ -337,12 +337,12 @@ Ascent rate:  [ 1.08182983 -1.01713906  0.15853359  0.55834314]</code></pre>
 </div>
 </div>
 <p>Using <code>numpy.polynomial.polynomial.polyfit()</code>, we first fit a third-degree polynomial, then use <code>numpy.polynomial.polynomial.polyval()</code> to evaluate the fitted data.</p>
-<div id="3614ae99" class="cell" data-execution_count="6">
+<div id="9d97c7fb" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>poly3_ascent_rate <span class="op">=</span> poly.polyfit(time[:<span class="op">-</span><span class="dv">1</span>], ascent_rate, deg <span class="op">=</span> <span class="dv">3</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fit_ascent_rate <span class="op">=</span> poly.polyval(x <span class="op">=</span> time[:<span class="op">-</span><span class="dv">1</span>], c <span class="op">=</span> poly3_ascent_rate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="04931517" class="cell" data-execution_count="7">
+<div id="14eeb80c" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Balloon Flight"</span>)</span>
@@ -406,7 +406,7 @@ Ascent rate:  [ 1.08182983 -1.01713906  0.15853359  0.55834314]</code></pre>
 </div>
 <p>&nbsp;</p>
 <p>Let’s take a look at the structure of the data.</p>
-<div id="2b6f5ad1" class="cell" data-execution_count="8">
+<div id="c282171e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>beam <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/balken-durchbiegung.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, max_rows<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span><span class="st">'str'</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The header of the file:"</span>)</span>
@@ -432,7 +432,7 @@ Tip&nbsp;6.2: Example Solution Beam
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<div id="6bcb3d8f" class="cell" data-execution_count="9">
+<div id="8abe591c" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>beam <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/balken-durchbiegung.csv"</span>, delimiter<span class="op">=</span><span class="st">","</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> beam[:, <span class="dv">0</span>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> beam[:, <span class="dv">1</span>]</span>
@@ -465,7 +465,7 @@ Tip&nbsp;6.2: Example Solution Beam
 <section id="exercise-neutron-scattering" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="exercise-neutron-scattering"><span class="header-section-number">6.3</span> Exercise: Neutron Scattering</h2>
 <p>The file ‘01-daten/neutronen.txt’ contains data from a neutron scattering experiment. The file header:</p>
-<div id="669e0b88" class="cell" data-execution_count="10">
+<div id="36a95ece" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read file header as a string</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>neutrons <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/neutronen.txt"</span>, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, max_rows<span class="op">=</span><span class="dv">4</span>, dtype<span class="op">=</span><span class="st">'str'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(neutrons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -499,7 +499,7 @@ Tip&nbsp;6.3: Sample Solution: Neutron Scattering
 <ol type="1">
 <li>Read in the data</li>
 </ol>
-<div id="1a35e1fc" class="cell" data-execution_count="11">
+<div id="9bf9ff27" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>neutrons <span class="op">=</span> np.genfromtxt(<span class="st">"01-daten/neutronen.txt"</span>, delimiter<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>, skip_header<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>neutron_energy <span class="op">=</span> neutrons[:, <span class="dv">0</span>]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>cross_section <span class="op">=</span> neutrons[:, <span class="dv">1</span>]</span>
@@ -527,7 +527,7 @@ Tip&nbsp;6.3: Sample Solution: Neutron Scattering
 </ol></li>
 </ul></li>
 </ol>
-<div id="a79ae56f" class="cell" data-execution_count="12">
+<div id="72209be5" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Polynomial</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>polynomial5 <span class="op">=</span> poly.polyfit(neutron_energy, cross_section, deg<span class="op">=</span><span class="dv">5</span>)</span>
@@ -546,7 +546,7 @@ Tip&nbsp;6.3: Sample Solution: Neutron Scattering
 <ol start="4" type="1">
 <li>Graphical Representation</li>
 </ol>
-<div id="8adfcfd9" class="cell" data-execution_count="13">
+<div id="b5296cc7" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>[<span class="dv">7</span>, <span class="dv">5</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison with cubic splines</span></span>

@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Methodenbaustein Datenfitting und Datenoptimierung</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Data Fitting and Optimization Method Module</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Methodenbaustein Datenfitting und Datenoptimierung</span></a>
+ <span class="menu-text">Data Fitting and Optimization Method Module</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -179,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#methodenbaustein-datenfitting-und-datenoptimierung" id="toc-methodenbaustein-datenfitting-und-datenoptimierung" class="nav-link active" data-scroll-target="#methodenbaustein-datenfitting-und-datenoptimierung">Methodenbaustein Datenfitting und Datenoptimierung</a></li>
+  <li><a href="#data-fitting-and-optimization-method-module" id="toc-data-fitting-and-optimization-method-module" class="nav-link active" data-scroll-target="#data-fitting-and-optimization-method-module">Data Fitting and Optimization Method Module</a></li>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   </ul>
@@ -226,32 +226,32 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="methodenbaustein-datenfitting-und-datenoptimierung" class="level1 unnumbered">
-<h1 class="unnumbered">Methodenbaustein Datenfitting und Datenoptimierung</h1>
-<div id="Lizenz" class="border">
+<section id="data-fitting-and-optimization-method-module" class="level1 unnumbered">
+<h1 class="unnumbered">Data Fitting and Optimization Method Module</h1>
+<div id="License" class="border">
 <div class="quarto-layout-panel" data-layout="[20, 80]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
-<p><img src="skript/00-bilder/CC-BY.svg" class="img-fluid" alt="Symbol des Lizenzhinweises Creative Commons BY"></p>
+<p><img src="skript/00-bilder/CC-BY.svg" class="img-fluid" alt="Symbol of the Creative Commons BY license notice"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
-<p>Bausteine Computergestützter Datenanalyse von Lukas Arnold, Simone Arnold, Florian Bagemihl, Matthias Baitsch, Marc Fehr, Franca Hollmann, Maik Poetzsch und Sebastian Seipel. Methodenbaustein Datenfitting und Datenoptimierung von Marc Fehr und Maik Poetzsch ist lizensiert unter <a href="https://creativecommons.org/licenses/by/4.0/deed.de">CC BY 4.0</a>. Das Werk ist abrufbar auf <a href="https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierung">GitHub</a>. Ausgenommen von der Lizenz sind alle Logos Dritter und anders gekennzeichneten Inhalte. 2025</p>
+<p>Building Blocks of Computer-Assisted Data Analysis by Lukas Arnold, Simone Arnold, Florian Bagemihl, Matthias Baitsch, Marc Fehr, Franca Hollmann, Maik Poetzsch and Sebastian Seipel. Data Fitting and Optimization Method Module by Marc Fehr and Maik Poetzsch is licensed under <a href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a>. The work is available on <a href="https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierung-en">GitHub</a>. Excluded from the license are all third-party logos and other content marked otherwise. 2025</p>
 </div>
 </div>
 </div>
-<p>Zitiervorschlag</p>
-<p>Arnold, Lukas, Simone Arnold, Florian Bagemihl, Matthias Baitsch, Marc Fehr, Franca Hollmann, Maik Poetzsch, und Sebastian Seipel. 2025. “Bausteine Computergestützter Datenanalyse. Methodenbaustein Datenfitting und Datenoptimierung”. <a href="https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierunge" class="uri">https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierunge</a>.</p>
-<p>BibTeX-Vorlage</p>
-<pre><code>@misc{BCD-m-datenfittung-und-optimierung-2025,
- title={Bausteine Computergestützter Datenanalyse. Methodenbaustein Datenfitting und Datenoptimierung.},
+<p>Suggested Citation</p>
+<p>Arnold, Lukas, Simone Arnold, Florian Bagemihl, Matthias Baitsch, Marc Fehr, Franca Hollmann, Maik Poetzsch, and Sebastian Seipel. 2025. “Building Blocks of Computer-Assisted Data Analysis. Data Fitting and Optimization Method Module”. <a href="https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierung-en" class="uri">https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierung-en</a>.</p>
+<p>BibTeX Template</p>
+<pre><code>@misc{BCD-m-datenfitting-und-optimierung-2025,
+ title={Building Blocks of Computer-Assisted Data Analysis. Data Fitting and Optimization Method Module.},
  author={Arnold, Lukas and Arnold, Simone and Bagemihl, Florian and Baitsch, Matthias and Fehr, Marc and Hollmann, Franca and Poetzsch, Maik and Seipel, Sebastian},
  year={2025},
- url={https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierung}} </code></pre>
+ url={https://github.com/bausteine-der-datenanalyse/m-datenfitting-und-optimierung-en}}</code></pre>
 </div>
 </section>
 <section id="prerequisites" class="level1">
 <h1>Prerequisites</h1>
-<p>The estimated completion time for this module is approximately <strong>placeholder</strong>. The following modules are required to work on this unit:</p>
+<p>The estimated completion time for this module is approximately <strong>10 hours</strong>. The following modules are required to work on this unit:</p>
 <ul>
 <li>Python tool module</li>
 <li>NumPy tool module</li>
