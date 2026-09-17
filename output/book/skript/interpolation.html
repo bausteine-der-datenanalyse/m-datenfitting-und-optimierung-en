@@ -323,7 +323,7 @@ P(x) = \sum_{i=0}^n a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1
 <p>In the NumPy module, polynomials are represented by their coefficients. Generally, a polynomial of degree <span class="math inline">\(n\)</span> is represented by the following array:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[a0, a1, a2, ..., an]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For example, for <span class="math inline">\(P(x) = 3 -2x + 5x^2 + x^3\)</span>:</p>
-<div id="53c39f73" class="cell" data-execution_count="2">
+<div id="41a5e423" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(P)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -331,11 +331,11 @@ P(x) = \sum_{i=0}^n a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1
 </div>
 </div>
 <p>Functions for evaluating polynomial functions are provided by the <code>numpy.polynomial</code> package, specifically its module <code>numpy.polynomial.polynomial</code>.</p>
-<div id="be746b03" class="cell" data-execution_count="3">
+<div id="e02dccfe" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.polynomial.polynomial <span class="im">as</span> poly</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The evaluation of a polynomial at a point or an array is done using the <code>poly.polyval(x, c)</code> function. This calculates the function values for the values passed in <code>x</code> using the function parameters <code>c</code>.</p>
-<div id="cc57d81d" class="cell" data-execution_count="4">
+<div id="03fd4b74" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> poly.polyval(x, P)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"P(x=</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -343,7 +343,7 @@ P(x) = \sum_{i=0}^n a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1
 <pre><code>P(x=1) = 7.0</code></pre>
 </div>
 </div>
-<div id="e21d83a2" class="cell" data-execution_count="5">
+<div id="d55d1883" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> poly.polyval(x, P)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"P(x=</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -352,7 +352,7 @@ P(x) = \sum_{i=0}^n a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1
 </div>
 </div>
 <p>The Matplotlib package can be used for graphical representation in the range <span class="math inline">\(x \in [-6, 2]\)</span>.</p>
-<div id="912ed759" class="cell" data-execution_count="6">
+<div id="a9e7160e" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 50 points between -6 and 2</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">50</span>)</span>
@@ -381,7 +381,7 @@ P(x) = \sum_{i=0}^n a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1
 </div>
 <p>&nbsp;</p>
 <p>To find the roots of a polynomial, the function <code>poly.polyroots()</code> can be used. For the polynomial above, the following roots can be determined.</p>
-<div id="6646bb74" class="cell" data-execution_count="7">
+<div id="1a68c085" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>roots <span class="op">=</span> poly.polyroots(P)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># direct output of the array</span></span>
@@ -393,7 +393,7 @@ P(x) = \sum_{i=0}^n a_i x^i = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_2 x^2 + a_1
 [-5.46628038+0.j        0.23314019-0.703182j  0.23314019+0.703182j]</code></pre>
 </div>
 </div>
-<div id="40e4ce24" class="cell" data-execution_count="8">
+<div id="11c54de7" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Roots: "</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nicer display of the array</span></span>
@@ -423,7 +423,7 @@ P(x) = \prod_{i=1}^n \left(x - x_i\right) = (x - x_1)\cdot (x - x_2) \cdot \cdot
 P(x) = (x - 1)(x - 2) = 2 - 3x + x^2
 \]</span></p>
 <p>The function <code>poly.polyfromroots(roots)</code> can determine the polynomial coefficients from the roots. Based on the example above, the function call would be:</p>
-<div id="02e053a2" class="cell" data-execution_count="9">
+<div id="4b22e5bb" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>roots <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>coefficients <span class="op">=</span> poly.polyfromroots(roots)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -444,7 +444,7 @@ Coefficients: [ 2. -3.  1.]</code></pre>
 y(x) = \beta_0 + \beta_1 x
 \]</span></p>
 <p>vanishes.</p>
-<div id="3a3a9bb5" class="cell" data-tags="[&quot;hide_input&quot;]" data-execution_count="10">
+<div id="126f0c6f" class="cell" data-tags="[&quot;hide_input&quot;]" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data from y(x) = 2 - x</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">50</span></span>
@@ -483,7 +483,7 @@ y(x) = \beta_0 + \beta_1 x
 <p><span class="math display">\[
 y(x) = \beta_0 + \beta_1 x + \beta_2 x^2
 \]</span></p>
-<div id="e998ad10" class="cell" data-tags="[&quot;hide_input&quot;]" data-execution_count="11">
+<div id="0916cb4c" class="cell" data-tags="[&quot;hide_input&quot;]" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data from y(x) = -1 - 4x + 3x^2</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">50</span></span>
@@ -546,23 +546,23 @@ P(x_i) = y_i \quad i = 1, \dots, n
 <p>The data points in the example follow the function <span class="math inline">\(f(x)\)</span>, which is only used to generate the data points:</p>
 <p><span class="math display">\[ f(x) = \frac{1}{2} + \frac{1}{1+x^2}\]</span></p>
 <p>First, we generate the data points.</p>
-<div id="46dd2797" class="cell" data-execution_count="12">
+<div id="72ee6914" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func(x):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> x<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="91b8a620" class="cell" data-execution_count="13">
+<div id="e2312856" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>xmin <span class="op">=</span> <span class="op">-</span><span class="dv">5</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(xmin, xmax, <span class="dv">100</span>)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> func(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="7526ab3e" class="cell" data-execution_count="14">
+<div id="3db8984c" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> np.linspace(xmin, xmax, n)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>yi <span class="op">=</span> func(xi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we perform the interpolation for 5 and 15 data points</p>
-<div id="1a7d050d" class="cell" data-execution_count="15">
+<div id="7ca5800b" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> poly.polyfit(xi, yi, n<span class="op">-</span><span class="dv">1</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Interpolation coefficients:"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(P)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -572,7 +572,7 @@ P(x_i) = y_i \quad i = 1, \dots, n
   5.30503979e-03]</code></pre>
 </div>
 </div>
-<div id="6d47ab87" class="cell" data-execution_count="16">
+<div id="51e2a4dc" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, color<span class="op">=</span><span class="st">'C0'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">'generating function'</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, poly.polyval(x, P), color<span class="op">=</span><span class="st">'C2'</span>, label<span class="op">=</span><span class="st">'interpolation'</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(xi, yi, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="st">'data points'</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
@@ -588,7 +588,7 @@ P(x_i) = y_i \quad i = 1, \dots, n
 </div>
 </div>
 </div>
-<div id="6425b28c" class="cell" data-execution_count="17">
+<div id="f26b114c" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">15</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>xi <span class="op">=</span> np.linspace(xmin, xmax, n)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>yi <span class="op">=</span> func(xi)</span>
